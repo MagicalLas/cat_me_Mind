@@ -22,12 +22,12 @@ public class MainActivity extends AppCompatActivity {
         area = findViewById(R.id.area);
         ArrayList<TextView> array = new ArrayList<>();
         int a=0;
-        for(int j =0; j< 10;j++) {
+        for(int j =0; j< 30;j++) {
             LinearLayout layout = new LinearLayout(MainActivity.this);
             LinearLayout.LayoutParams Layparams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             layout.setLayoutParams(Layparams);
 
-            for(int i =0; i< 10;i++) {
+            for(int i =0; i< 30;i++) {
                 TextView item = new TextView(MainActivity.this);
                 LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                 params.setMargins(2,2,2,2);
@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
                 item.setBackgroundColor(Color.parseColor("#FF7200"));
                 item.setTextColor(Color.parseColor("#FF7200"));
                 item.setTextSize(0);
-                item.setPadding(13,13,13,13);
+                item.setPadding(13,13,13,10);
                 layout.addView(item);
                 array.add(item);
                 a++;
