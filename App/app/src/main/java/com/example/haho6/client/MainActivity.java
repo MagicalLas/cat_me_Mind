@@ -51,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
                 t.setText(((int)event.getX()-(int)area.getX())/30+" ::  "+((int)event.getY()-(int)area.getY())/30+","+ finalA);
                 int x =((int)event.getX()-(int)area.getX())/30;
                 int y =((int)event.getY()-(int)area.getY())/30;
+                if(x<0||x>=30||y<0||y>=30)
+                    return false;
                 array.get(y*30+x).setBackgroundColor(Color.DKGRAY);
                 return true;
             }
