@@ -21,42 +21,34 @@ public class MainActivity extends AppCompatActivity {
         t = findViewById(R.id.vv);
         area = findViewById(R.id.area);
         ArrayList<TextView> array = new ArrayList<>();
-        for(int j =0; j< 30;j++) {
+        int a=0;
+        for(int j =0; j< 10;j++) {
             LinearLayout layout = new LinearLayout(MainActivity.this);
             LinearLayout.LayoutParams Layparams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             layout.setLayoutParams(Layparams);
 
-            for(int i =0; i< 30;i++) {
+            for(int i =0; i< 10;i++) {
                 TextView item = new TextView(MainActivity.this);
                 LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                params.setMargins(0,0,1,1);
+                params.setMargins(2,2,2,2);
                 item.setLayoutParams(params);
                 item.setBackgroundColor(Color.parseColor("#FF7200"));
                 item.setTextColor(Color.parseColor("#FF7200"));
                 item.setTextSize(0);
-                item.setPadding(19,19,10,10);
-                item.setText("");
+                item.setPadding(13,13,13,13);
                 layout.addView(item);
                 array.add(item);
+                a++;
             }
             area.addView(layout);
         }
+
+        int finalA = a;
         findViewById(R.id.in).setOnTouchListener((view, event)->{
             if(event.getAction()== MotionEvent.ACTION_MOVE){
                 //색변경
-                array.stream()
-                        .filter(v->{
-                            int x = ((int)event.getX()-90)/30*30;
-                            int y = (int) event.getY();
-                            if((x)==v.getX())
-                                return true;
-                            return false;})
-                        .limit(1)
-                        .forEach(i->{
-                            i.setTextColor(Color.parseColor("#2F7260"));
-                        });
                 //인터넷에 전달
-                t.setText(((int)event.getX()-88)/30*30+" ::  "+((int)event.getY()-240)/30*30+" \n"+array.get(1).getY()+":"+array.get(45).getX()+" => "+area.getY());
+                t.setText(((int)event.getX()-(int)area.getX())/30+" ::  "+((int)event.getY()-(int)area.getY())/30+","+ finalA);
                 return true;
             }
             if(event.getAction()== MotionEvent.ACTION_DOWN){
@@ -65,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
             }
             return false;
         });
-
+        array.get(1).setBackgroundColor(Color.DKGRAY);
+        array.get(29).setBackgroundColor(Color.DKGRAY);
     }
 }
