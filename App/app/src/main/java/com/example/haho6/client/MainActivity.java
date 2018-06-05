@@ -49,6 +49,9 @@ public class MainActivity extends AppCompatActivity {
                 //색변경
                 //인터넷에 전달
                 t.setText(((int)event.getX()-(int)area.getX())/30+" ::  "+((int)event.getY()-(int)area.getY())/30+","+ finalA);
+                int x =((int)event.getX()-(int)area.getX())/30;
+                int y =((int)event.getY()-(int)area.getY())/30;
+                array.get(y*30+x).setBackgroundColor(Color.DKGRAY);
                 return true;
             }
             if(event.getAction()== MotionEvent.ACTION_DOWN){
@@ -57,7 +60,5 @@ public class MainActivity extends AppCompatActivity {
             }
             return false;
         });
-        array.get(1).setBackgroundColor(Color.DKGRAY);
-        array.get(29).setBackgroundColor(Color.DKGRAY);
     }
 }
