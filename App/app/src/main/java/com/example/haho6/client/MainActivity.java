@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
     LinearLayout area;
 
     TextView t;
+    int penColor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
         t = findViewById(R.id.vv);
         area = findViewById(R.id.area);
         ArrayList<TextView> array = new ArrayList<>();
+        penColor = Color.GRAY;
         int a=0;
         for(int j =0; j< 30;j++) {
             LinearLayout layout = new LinearLayout(MainActivity.this);
@@ -32,8 +34,7 @@ public class MainActivity extends AppCompatActivity {
                 LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                 params.setMargins(2,2,2,2);
                 item.setLayoutParams(params);
-                item.setBackgroundColor(Color.parseColor("#FF7200"));
-                item.setTextColor(Color.parseColor("#FF7200"));
+                item.setBackgroundColor(Color.parseColor("#FFFFFF"));
                 item.setTextSize(0);
                 item.setPadding(13,13,13,10);
                 layout.addView(item);
@@ -53,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
                 int y =((int)event.getY()-(int)area.getY())/30;
                 if(x<0||x>=30||y<0||y>=30)
                     return false;
-                array.get(y*30+x).setBackgroundColor(Color.DKGRAY);
+                array.get(y*30+x).setBackgroundColor(penColor);
                 return true;
             }
             if(event.getAction()== MotionEvent.ACTION_DOWN){
