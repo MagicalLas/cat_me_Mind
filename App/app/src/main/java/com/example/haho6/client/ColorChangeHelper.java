@@ -36,9 +36,9 @@ public class ColorChangeHelper implements View.OnClickListener{
 
             color= Color.RED;
         }
-        if(v.getId()==R.id.gray){
+        if(v.getId()==R.id.green){
 
-            color= Color.GRAY;
+            color= Color.GREEN;
         }
     }
 }

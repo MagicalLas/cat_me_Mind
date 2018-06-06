@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,8 +22,15 @@ public class MainActivity extends AppCompatActivity {
         t = findViewById(R.id.vv);
         area = findViewById(R.id.area);
         ArrayList<TextView> array = new ArrayList<>();
-        int a=0;
+        ArrayList<Button> Buttons = new ArrayList<>();
+
         ColorChangeHelper color = new ColorChangeHelper();
+        LinearLayout a = findViewById(R.id.paret);
+        a.getChildAt(2).setOnClickListener(color);
+        findViewById(R.id.black).setOnClickListener(color);
+        findViewById(R.id.yellow).setOnClickListener(color);
+        findViewById(R.id.pink).setOnClickListener(color);
+
 
         for(int j =0; j< 30;j++) {
             LinearLayout layout = new LinearLayout(MainActivity.this);
@@ -39,17 +47,15 @@ public class MainActivity extends AppCompatActivity {
                 item.setPadding(13,13,13,10);
                 layout.addView(item);
                 array.add(item);
-                a++;
             }
             area.addView(layout);
         }
 
-        int finalA = a;
         findViewById(R.id.in).setOnTouchListener((view, event)->{
             if(event.getAction()== MotionEvent.ACTION_MOVE){
                 //색변경
                 //인터넷에 전달
-                t.setText(((int)event.getX()-(int)area.getX())/30+" ::  "+((int)event.getY()-(int)area.getY())/30+","+ finalA);
+                t.setText(((int)event.getX()-(int)area.getX())/30+" ::  "+((int)event.getY()-(int)area.getY())/30);
                 int x =((int)event.getX()-(int)area.getX())/30;
                 int y =((int)event.getY()-(int)area.getY())/30;
                 if(x<0||x>=30||y<0||y>=30)
