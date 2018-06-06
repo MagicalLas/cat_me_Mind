@@ -24,13 +24,7 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<TextView> array = new ArrayList<>();
         ArrayList<Button> Buttons = new ArrayList<>();
 
-        ColorChangeHelper color = new ColorChangeHelper();
-        LinearLayout a = findViewById(R.id.paret);
-        a.getChildAt(2).setOnClickListener(color);
-        findViewById(R.id.black).setOnClickListener(color);
-        findViewById(R.id.yellow).setOnClickListener(color);
-        findViewById(R.id.pink).setOnClickListener(color);
-
+        ColorChangeHelper color = new ColorChangeHelper(findViewById(R.id.paret));
 
         for(int j =0; j< 30;j++) {
             LinearLayout layout = new LinearLayout(MainActivity.this);
@@ -55,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
             if(event.getAction()== MotionEvent.ACTION_MOVE){
                 //색변경
                 //인터넷에 전달
-                t.setText(((int)event.getX()-(int)area.getX())/30+" ::  "+((int)event.getY()-(int)area.getY())/30);
+                t.setText(((int)event.getX()-(int)area.getX())/30+" ::  "+((int)event.getY()-(int)area.getY())/30+":");
                 int x =((int)event.getX()-(int)area.getX())/30;
                 int y =((int)event.getY()-(int)area.getY())/30;
                 if(x<0||x>=30||y<0||y>=30)

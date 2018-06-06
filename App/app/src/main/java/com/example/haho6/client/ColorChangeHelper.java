@@ -2,13 +2,17 @@ package com.example.haho6.client;
 
 import android.graphics.Color;
 import android.view.View;
+import android.widget.LinearLayout;
 
 public class ColorChangeHelper implements View.OnClickListener{
 
     int color;
-    ColorChangeHelper()
+    ColorChangeHelper(LinearLayout a)
     {
         color= Color.DKGRAY;
+        for (int i=1;i<a.getChildCount(); i++){
+            a.getChildAt(i).setOnClickListener(this::onClick);
+        }
     }
     @Override
     public void onClick(View v) {
