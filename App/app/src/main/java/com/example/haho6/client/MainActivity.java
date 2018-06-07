@@ -1,19 +1,30 @@
 package com.example.haho6.client;
 
+import android.content.ContentValues;
 import android.graphics.Color;
+import android.os.AsyncTask;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class MainActivity extends AppCompatActivity {
     LinearLayout area;
-
+    Handler handler = new Handler();
     TextView t;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,11 +55,15 @@ public class MainActivity extends AppCompatActivity {
             }
             area.addView(layout);
         }
-
+        NetThread netThread = new NetThread();
+        netThread.url_ = "http://localhost:8080/A/001111";
+        netThread.run();
         findViewById(R.id.in).setOnTouchListener((view, event)->{
             if(event.getAction()== MotionEvent.ACTION_MOVE){
                 //색변경
                 //인터넷에 전달
+                //
+                new GetServer().execute();
                 t.setText(((int)event.getX()-(int)area.getX())/30+" ::  "+((int)event.getY()-(int)area.getY())/30+":");
                 int x =((int)event.getX()-(int)area.getX())/30;
                 int y =((int)event.getY()-(int)area.getY())/30;
@@ -63,5 +78,37 @@ public class MainActivity extends AppCompatActivity {
             }
             return false;
         });
+    }
+
+    class NetThread extends Thread{
+        @Override
+        public void run() {
+            handler.post(() -> {
+                req();
+                //t.setText("Las");
+            });
+
+        }
+        String url_;
+        String req(){
+            try {
+                URL url = new URL(url_);
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                if(connection==null)
+                    return null;
+                connection.setConnectTimeout(10000);
+                connection.setRequestMethod("GET");
+                connection.setDoInput(true);
+                connection.setDoInput(true);
+                int resC = connection.getResponseCode();
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return null;
+        }
     }
 }
